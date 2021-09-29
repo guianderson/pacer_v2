@@ -299,74 +299,95 @@
                     </li>
                   </ul>
                 </div>
-
-                <?php 
-                  $sql = "SELECT count(*) from user_teams where user_id = '".$_SESSION['id_user']."'";
-                  $result = mysqli_query($conecta,$sql);  
-                  while( $row = mysqli_fetch_array( $result, MYSQLI_ASSOC) ) {
-                    $len = $row['count(*)'];
-                  }
-                ?>
-
                 <div class="main-panel">        
                   <div class="content-wrapper">
                     <div class="row">
                       <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                           <div class="card-body">
-                            <h4 class="card-title">Equipes</h4>
+                            <h4 class="card-title">Time</h4>
                             <p class="card-description">
-                              Minhas <code>equipes</code>
+                              Integrantes da <code>Equipe</code>
                             </p>
-                            <div class="table-responsive">
-                              <table class="table">
-                                <thead>
-                                  
-                                    <?php 
-                                    if ($len != 0){
-                                      $sql = "SELECT p.project_name, t.team_name, us.team_id, t.sn_ativo AS 'tsn_ativo' , 
-                                              p.sn_ativo AS 'psn_ativo', us.sn_ativo AS 'ussn_ativo'
-                                              FROM `user_teams` us 
-                                              INNER JOIN `users` u on u.usu_id = us.user_id 
-                                              INNER JOIN `project` p on p.id_project = us.project_id 
-                                              INNER JOIN `teams` t on t.id_team = us.team_id 
-                                              WHERE us.user_id = '".$_SESSION['id_user']."'";
-                                      $result = mysqli_query($conecta,$sql);
-                                      while( $row = mysqli_fetch_array( $result, MYSQLI_ASSOC) ) {
-
-                                        if ($row['tsn_ativo'] == 'S' and $row['psn_ativo'] == 'S' and $row['ussn_ativo'] == 'S') {
-                                          $status = '<label class="badge badge-success">Ativo</label>';
-                                        }else{
-                                          $status = '<label class="badge badge-danger">Finalizado</label>';
-                                        }
-
-                                      echo "
-                                      <tr>
-                                        <th>Id</th>
-                                        <th>Time</th>
-                                        <th>Projeto</th>
-                                        <th>Status</th>
-                                        <th>Entrar</th>
-                                      </tr>
-                                      </thead>
-                                      <tbody>
-                                        <tr>
-                                        <tr>
-                                        <td>".$row['team_id'].                                    "</td>
-                                        <td>".$row['team_name'].                                    "</td>
-                                        <td>".$row['project_name'].                                    "</td>
-                                        <td>".$status.                                    "</td>
-                                        <td><a href='team.php?id=".$row['team_id']."' type='button' style='color: #ffffff;' class='btn btn-primary btn-rounded btn-icon'>Ver time</a></td></tr>";
-                                      }
-                                    }else{
-                                      echo "Você não está cadastrado em nenhuma Equipe.<br><br> Para cadastrar-se em algum time, 
-                                      <a href='my_projects.php'>Clique aqui.</a>";
-                                    } 
-                                    ?>
-                                  </tr>
-                                </tbody>
-                              </table>
+                            <div class="row flex-grow">
+                          <div class="col-12 grid-margin stretch-card">
+                            <div class="card card-rounded">
+                              <div class="card-body">
+                                <div class="row">
+                                  <div class="col-lg-12">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                      <div>
+                                        <h4 class="card-title card-title-dash">Top Performer</h4>
+                                      </div>
+                                    </div>
+                                    <div class="mt-3">
+                                      <div class="wrapper d-flex align-items-center justify-content-between py-2 border-bottom">
+                                        <div class="d-flex">
+                                          <img class="img-sm rounded-10" src="images/faces/face1.jpg" alt="profile">
+                                          <div class="wrapper ms-3">
+                                            <p class="ms-1 mb-1 fw-bold">Brandon Washington</p>
+                                            <small class="text-muted mb-0">162543</small>
+                                          </div>
+                                        </div>
+                                        <div class="text-muted text-small">
+                                          1h ago
+                                        </div>
+                                      </div>
+                                      <div class="wrapper d-flex align-items-center justify-content-between py-2 border-bottom">
+                                        <div class="d-flex">
+                                          <img class="img-sm rounded-10" src="images/faces/face2.jpg" alt="profile">
+                                          <div class="wrapper ms-3">
+                                            <p class="ms-1 mb-1 fw-bold">Wayne Murphy</p>
+                                            <small class="text-muted mb-0">162543</small>
+                                          </div>
+                                        </div>
+                                        <div class="text-muted text-small">
+                                          1h ago
+                                        </div>
+                                      </div>
+                                      <div class="wrapper d-flex align-items-center justify-content-between py-2 border-bottom">
+                                        <div class="d-flex">
+                                          <img class="img-sm rounded-10" src="images/faces/face3.jpg" alt="profile">
+                                          <div class="wrapper ms-3">
+                                            <p class="ms-1 mb-1 fw-bold">Katherine Butler</p>
+                                            <small class="text-muted mb-0">162543</small>
+                                          </div>
+                                        </div>
+                                        <div class="text-muted text-small">
+                                          1h ago
+                                        </div>
+                                      </div>
+                                      <div class="wrapper d-flex align-items-center justify-content-between py-2 border-bottom">
+                                        <div class="d-flex">
+                                          <img class="img-sm rounded-10" src="images/faces/face4.jpg" alt="profile">
+                                          <div class="wrapper ms-3">
+                                            <p class="ms-1 mb-1 fw-bold">Matthew Bailey</p>
+                                            <small class="text-muted mb-0">162543</small>
+                                          </div>
+                                        </div>
+                                        <div class="text-muted text-small">
+                                          1h ago
+                                        </div>
+                                      </div>
+                                      <div class="wrapper d-flex align-items-center justify-content-between pt-2">
+                                        <div class="d-flex">
+                                          <img class="img-sm rounded-10" src="images/faces/face5.jpg" alt="profile">
+                                          <div class="wrapper ms-3">
+                                            <p class="ms-1 mb-1 fw-bold">Rafell John</p>
+                                            <small class="text-muted mb-0">Alaska, USA</small>
+                                          </div>
+                                        </div>
+                                        <div class="text-muted text-small">
+                                          1h ago
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
+                          </div>
+                        </div>
                           </div>
                         </div>
                       </div>
